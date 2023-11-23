@@ -12,7 +12,7 @@ class Calculator_App():
             w.configure(bg='#3b3a3a')  # Grey background color
             
 
-      def create_number_grid(self):
+      def create_buttons_grid(self):
             button_options = {'font': ("Arial", 20), 'width': 2, 'height': 1, 'padx': 10, 'pady': 10, 'bg': '#3b3a3a', 'fg': 'white'}
             button_0 = tk.Button(self.w, text='0', **button_options)
             button_1 = tk.Button(self.w, text="1", **button_options)

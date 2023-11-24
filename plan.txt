@@ -1,0 +1,41 @@
+ΠΛΑΝΟ ΕΡΓΑΣΙΑΣ
+CLASSES
+  Graphics_class ------> ΓΡΑΦΙΚΑ ΕΦΑΡΜΟΓΗΣ:
+                            -WINDOW
+                            -BUTTONS
+                            -**responsive_window
+                            -χρωματα
+
+  Display_class ------>  Label:
+                            -εμφάνιση user_input
+                            -clear user_input
+                            
+
+  Controller_class ------>  Κλάση διαχειρησς user_input:
+                              -δεχεται και σωζει τους αριθμους του user 
+                              για να χρησιμοποιηθουν απο τις κλασεις πραξεων
+                              -interactions
+
+  Basic_operations ------>  Βασικες πραξεις
+                            αποτέλεσμα(=)
+                            
+  
+  Scientific_operations ------> Αλλες πρσξεις
+
+  Trigonometry_operations ------> Tριγωνομετρικες
+
+  Symbol_class ------>  Χρήση συμβολων: 
+                            - ()
+                            - ,
+                            - +/-
+
+  Arithmetic_system_handling ------> Μετατροπες:
+                                        -bin
+                                        -hex
+                                        -oct
+                                        -dec
+
+  Error_handling ------>  Διαχείριση error απο user:
+                              -Crash_handling
+  
+  **History_class ------> Διαχείρησ ιστορικού

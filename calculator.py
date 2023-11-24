@@ -8,7 +8,7 @@ class Calculator_App():
             w.geometry("400x500")
             w.title("SCIENTIFIC CALCULATOR")
             w.resizable(height=False, width=False)
-            self.create_number_grid()
+            self.create_buttons_grid()
             w.configure(bg='#3b3a3a')  # Grey background color
             
 

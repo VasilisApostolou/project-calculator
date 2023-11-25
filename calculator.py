@@ -17,8 +17,8 @@ class Calculator_App():
     def create_buttons_grid(self):
             #δημιουργία γραφικών για τα κουμπιά της εφαρμογής
             button_frame = tk.Frame(self.w)
-            button_frame.place(x=100, y=150)
-            button_options = {'font': ("Arial", 18), 'width': 2, 'height': 1,'padx': 8, 'pady': 8, 'bg': '#3b3a3a', 'fg': 'white'}
+            button_frame.place(x=190, y=195)
+            button_options = {'font': ("Poppins", 18), 'width': 2, 'height': 1,'padx': 8, 'pady': 8, 'bg': '#3b3a3a', 'fg': 'white'}
             button_0 = tk.Button(button_frame, text='0', **button_options, command="")
             button_1 = tk.Button(button_frame, text="1", **button_options)
             button_2 = tk.Button(button_frame, text="2", **button_options)
@@ -39,9 +39,13 @@ class Calculator_App():
             button_prcnt = tk.Button(button_frame, text="%", **button_options)
             button_sqrt = tk.Button(button_frame, text="√", **button_options)
             button_log = tk.Button(button_frame, text="log", **button_options)
-                  
+            button_clear = tk.Button(button_frame,text="CE", **button_options)
+            button_del = tk.Button(button_frame,text="⌫", **button_options)
 
             # Use grid to place buttons in a grid layout
+            button_clear.grid(row=2,column=5)
+            button_del.grid(row=2,column=6)
+
             button_log.grid(row=3,column=3)
             button_sqrt.grid(row=3,column=4)
             button_prcnt.grid(row=3,column=5)
@@ -77,7 +81,6 @@ class Calculator_App():
             self.entry_box.insert(tk.END, self.current_text + self.key_pressed)
 
     def create_entry_box(self):
-            #δημιουργεί την μπάρα εμφάνισης του user_input
             self.entry_box = tk.Entry(self.w, justify='right',bg="#232323", fg='white', font=("Arial", 32))
             self.entry_box.pack(fill="x", padx=10, pady=10, ipadx=8, ipady=8)
             self.w.bind('<Key>', self.on_key_press)

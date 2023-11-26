@@ -19,6 +19,9 @@ class Calculator_App():
             self.create_buttons_grid()
             self.create_entry_box()
         
+    def calculate_padding(self, percentage):
+           return int(percentage * min(self.window_width, self.window_height))
+
 
     def create_buttons_grid(self):
             #δημιουργία γραφικών για τα κουμπιά της εφαρμογής
@@ -26,7 +29,7 @@ class Calculator_App():
             frame_x = int(self.window_width *0.2)
             frame_y = int(self.window_height*0.3)
             button_frame.place(x=frame_x,y=frame_y)
-            button_options = {'font': ("Poppins", 16), 'width': 2, 'height': 1,'padx': 8, 'pady': 8, 'bg': '#3b3a3a', 'fg': 'white'}
+            button_options = {'font': ("Poppins", 16), 'width': 2, 'height': 1,'padx': self.calculate_padding(0.01), 'pady': self.calculate_padding(0.01), 'bg': '#3b3a3a', 'fg': 'white'}
             button_0 = tk.Button(button_frame, text='0', **button_options, command="")
             button_1 = tk.Button(button_frame, text="1", **button_options)
             button_2 = tk.Button(button_frame, text="2", **button_options)

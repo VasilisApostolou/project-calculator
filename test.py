@@ -41,11 +41,19 @@ class Calculator_App():
             button_log = tk.Button(button_frame, text="log", **button_options)
             button_clear = tk.Button(button_frame,text="CE", **button_options)
             button_del = tk.Button(button_frame,text="⌫", **button_options)
-
+            button_e = tk.Button(button_frame, text='e', **button_options)
+            button_π = tk.Button(button_frame, text='π', **button_options)
+            button_ln = tk.Button(button_frame,text="ln",**button_options)
+            button_absolute = tk.Button(button_frame,text="|x|",**button_options)
             # Use grid to place buttons in a grid layout
+            button_absolute.grid(row=2,column=2)
+            button_π.grid(row=2,column=3)
+            button_e.grid(row=2,column=4)
             button_clear.grid(row=2,column=5)
             button_del.grid(row=2,column=6)
-
+            
+            
+            button_ln.grid(row=3,column=2)
             button_log.grid(row=3,column=3)
             button_sqrt.grid(row=3,column=4)
             button_prcnt.grid(row=3,column=5)

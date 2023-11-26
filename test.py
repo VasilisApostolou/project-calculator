@@ -17,7 +17,7 @@ class Calculator_App():
     def create_buttons_grid(self):
             #δημιουργία γραφικών για τα κουμπιά της εφαρμογής
             button_frame = tk.Frame(self.w)
-            button_frame.place(x=155, y=158)
+            button_frame.place(x=155,y=158)
             button_options = {'font': ("Poppins", 16), 'width': 2, 'height': 1,'padx': 8, 'pady': 8, 'bg': '#3b3a3a', 'fg': 'white'}
             button_0 = tk.Button(button_frame, text='0', **button_options, command="")
             button_1 = tk.Button(button_frame, text="1", **button_options)
@@ -45,6 +45,10 @@ class Calculator_App():
             button_π = tk.Button(button_frame, text='π', **button_options)
             button_ln = tk.Button(button_frame,text="ln",**button_options)
             button_absolute = tk.Button(button_frame,text="|x|",**button_options)
+            button_power2 = tk.Button(button_frame,text="x²", **button_options)
+            button_cos = tk.Button(button_frame,text="cos",**button_options)
+            button_sin = tk.Button(button_frame,text="sin",**button_options)
+            button_tan = tk.Button(button_frame,text="tan",**button_options)
             # Use grid to place buttons in a grid layout
             button_absolute.grid(row=2,column=2)
             button_π.grid(row=2,column=3)
@@ -58,22 +62,26 @@ class Calculator_App():
             button_sqrt.grid(row=3,column=4)
             button_prcnt.grid(row=3,column=5)
             button_div.grid(row=3,column=6)
-
+            
+            button_power2.grid(row=4,column=2)
             button_7.grid(row=4, column=3)
             button_8.grid(row=4, column=4)
             button_9.grid(row=4, column=5)
             button_mult.grid(row=4,column=6)
-
+            
+            button_cos.grid(row=5,column=2)
             button_4.grid(row=5, column=3)
             button_5.grid(row=5, column=4)
             button_6.grid(row=5, column=5)
             button_subtr.grid(row=5,column=6)
-
+            
+            button_sin.grid(row=6,column=2)
             button_1.grid(row=6, column=3)
             button_2.grid(row=6, column=4)
             button_3.grid(row=6, column=5)
             button_addit.grid(row=6,column=6)
             
+            button_tan.grid(row=7,column=2)
             button_comma.grid(row=7, column=3)
             button_0.grid(row=7, column=4)
             button_neg.grid(row=7, column=5)

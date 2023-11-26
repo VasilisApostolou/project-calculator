@@ -26,8 +26,8 @@ class Calculator_App():
     def create_buttons_grid(self):
             #δημιουργία γραφικών για τα κουμπιά της εφαρμογής
             button_frame = tk.Frame(self.w)
-            frame_x = int(self.window_width *0.2)
-            frame_y = int(self.window_height*0.3)
+            frame_x = int(self.window_width *0.58)
+            frame_y = int(self.window_height*0.18)
             button_frame.place(x=frame_x,y=frame_y)
             button_options = {'font': ("Poppins", 16), 'width': 2, 'height': 1,'padx': self.calculate_padding(0.01), 'pady': self.calculate_padding(0.01), 'bg': '#3b3a3a', 'fg': 'white'}
             button_0 = tk.Button(button_frame, text='0', **button_options, command="")

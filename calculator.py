@@ -6,7 +6,13 @@ class Calculator_App():
     def __init__(self, w):
             #δημιουργία γραφικών παραθύρου εφαρμογής
             self.w = w
-            self.w.geometry("400x500")
+            self.screen_width = w.winfo_screenwidth()
+            self.screen_height = w.winfo_screenheight()
+            self.window_width_percentage = 0.2
+            self.window_height_percentage = 0.47
+            self.window_width = int(self.screen_width * self.window_width_percentage)
+            self.window_height = int(self.screen_height * self.window_height_percentage)
+            self.w.geometry(f"{self.window_width}x{self.window_height}")
             self.w.title("SCIENTIFIC CALCULATOR")
             self.w.resizable(height=False, width=False)
             self.w.configure(bg='#3b3a3a')
@@ -17,8 +23,10 @@ class Calculator_App():
     def create_buttons_grid(self):
             #δημιουργία γραφικών για τα κουμπιά της εφαρμογής
             button_frame = tk.Frame(self.w)
-            button_frame.place(x=190, y=195)
-            button_options = {'font': ("Poppins", 18), 'width': 2, 'height': 1,'padx': 8, 'pady': 8, 'bg': '#3b3a3a', 'fg': 'white'}
+            frame_x = int(self.window_width *0.2)
+            frame_y = int(self.window_height*0.3)
+            button_frame.place(x=frame_x,y=frame_y)
+            button_options = {'font': ("Poppins", 16), 'width': 2, 'height': 1,'padx': 8, 'pady': 8, 'bg': '#3b3a3a', 'fg': 'white'}
             button_0 = tk.Button(button_frame, text='0', **button_options, command="")
             button_1 = tk.Button(button_frame, text="1", **button_options)
             button_2 = tk.Button(button_frame, text="2", **button_options)

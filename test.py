@@ -1,22 +1,25 @@
 import tkinter as tk
 import math
 
-
 class Calculator_App():
     def __init__(self, w):
-            #δημιουργία γραφικών παραθύρου εφαρμογής
-            self.screen_width = w.winfo_screenwidth()
-            self.screen_height = w.winfo_screenheight()
-            self.window_width = int(self.screen_width * 0.2)
-            self.window_height = int(self.screen_height * 0.47)
-            self.w = w
-            self.w.geometry(f"{self.window_width}x{self.window_height}")
-            self.w.title("SCIENTIFIC CALCULATOR")
-            self.w.resizable(height=False, width=False)
-            self.w.configure(bg='#3b3a3a')
-            self.create_buttons_grid()
-            self.create_entry_box()
-        
+        # Δημιουργία γραφικών παραθύρου εφαρμογής
+        self.screen_width = w.winfo_screenwidth()
+        self.screen_height = w.winfo_screenheight()
+
+        # Χρησιμοποιήστε ποσοστιαίες διαστάσεις για το παράθυρο
+        self.window_width_percentage = 0.2
+        self.window_height_percentage = 0.47
+        self.window_width = int(self.screen_width * self.window_width_percentage)
+        self.window_height = int(self.screen_height * self.window_height_percentage)
+
+        self.w = w
+        self.w.geometry(f"{self.window_width}x{self.window_height}")
+        self.w.title("SCIENTIFIC CALCULATOR")
+        self.w.resizable(height=False, width=False)
+        self.w.configure(bg='#3b3a3a')
+        self.create_buttons_grid()
+        self.create_entry_box()
 
     def create_buttons_grid(self):
             #δημιουργία γραφικών για τα κουμπιά της εφαρμογής

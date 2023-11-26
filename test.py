@@ -1,31 +1,24 @@
 import tkinter as tk
 import math
 
+
 class Calculator_App():
     def __init__(self, w):
-        # Δημιουργία γραφικών παραθύρου εφαρμογής
-        self.screen_width = w.winfo_screenwidth()
-        self.screen_height = w.winfo_screenheight()
-
-        # Χρησιμοποιήστε ποσοστιαίες διαστάσεις για το παράθυρο
-        self.window_width_percentage = 0.2
-        self.window_height_percentage = 0.47
-        self.window_width = int(self.screen_width * self.window_width_percentage)
-        self.window_height = int(self.screen_height * self.window_height_percentage)
-
-        self.w = w
-        self.w.geometry(f"{self.window_width}x{self.window_height}")
-        self.w.title("SCIENTIFIC CALCULATOR")
-        self.w.resizable(height=False, width=False)
-        self.w.configure(bg='#3b3a3a')
-        self.create_buttons_grid()
-        self.create_entry_box()
+            #δημιουργία γραφικών παραθύρου εφαρμογής
+            self.w = w
+            self.w.geometry("400x500")
+            self.w.title("SCIENTIFIC CALCULATOR")
+            self.w.resizable(height=False, width=False)
+            self.w.configure(bg='#3b3a3a')
+            self.create_buttons_grid()
+            self.create_entry_box()
+        
 
     def create_buttons_grid(self):
             #δημιουργία γραφικών για τα κουμπιά της εφαρμογής
             button_frame = tk.Frame(self.w)
-            button_frame.place(x=190, y=200)
-            button_options = {'font': ("Poppins", 16), 'width': 2, 'height': 1,'padx': 6, 'pady': 6, 'bg': '#3b3a3a', 'fg': 'white'}
+            button_frame.place(x=205, y=160)
+            button_options = {'font': ("Poppins", 16), 'width': 2, 'height': 1,'padx': 8, 'pady': 8, 'bg': '#3b3a3a', 'fg': 'white'}
             button_0 = tk.Button(button_frame, text='0', **button_options, command="")
             button_1 = tk.Button(button_frame, text="1", **button_options)
             button_2 = tk.Button(button_frame, text="2", **button_options)
@@ -91,7 +84,8 @@ class Calculator_App():
             self.entry_box = tk.Entry(self.w, justify='right',bg="#232323", fg='white', font=("Arial", 32))
             self.entry_box.pack(fill="x", padx=10, pady=10, ipadx=8, ipady=8)
             self.w.bind('<Key>', self.on_key_press)
-          
+      
+    
 
 w = tk.Tk()
 calc_app = Calculator_App(w)

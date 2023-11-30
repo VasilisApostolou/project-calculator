@@ -22,3 +22,14 @@
                 self.number=int(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.tanh(self.number))
+                
+        def calculate_sqrt(self):
+                self.number = int(self.current_calculation)
+                self.entry_box.delete(0,tk.END)
+                self.entry_box.insert(tk.END,m.sqrt(self.number))
+        
+        def calculate_gamma(self):
+                self.number = int(self.current_calculation)
+                self.entry_box.delete(0,tk.END)
+                self.entry_box.insert(tk.END,m.gamma(self.number))
+                

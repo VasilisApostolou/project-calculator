@@ -32,7 +32,7 @@ class Calculator_App():
                 button_7 = tk.Button(self.button_frame, text="7", **modified_button_options, command=lambda: self.press_btn('7'))
                 button_8 = tk.Button(self.button_frame, text="8", **modified_button_options, command=lambda: self.press_btn('8'))
                 button_9 = tk.Button(self.button_frame, text="9", **modified_button_options, command=lambda: self.press_btn('9'))
-                button_neg = tk.Button(self.button_frame, text="+/-", **button_options)
+                button_neg = tk.Button(self.button_frame, text="+/-", **button_options,command=self.neg)
                 button_comma = tk.Button(self.button_frame, text=",", **button_options,command=lambda: self.press_btn('.'))
                 button_equal = tk.Button(self.button_frame, text="=", font=("Poppins",18),width=2,height=1,padx=8,pady=8,bg="#0a85b2",fg="white", command =lambda: self.equalize())
                 button_addit = tk.Button(self.button_frame, text="+", **button_options,command=lambda: self.press_btn('+'))
@@ -44,16 +44,14 @@ class Calculator_App():
                 button_log = tk.Button(self.button_frame, text="log10", **button_options, command=self.calculate_log10)
                 button_clear = tk.Button(self.button_frame,text="C", **button_options, command=self.clear_entry)
                 button_del = tk.Button(self.button_frame,text="⌫", font=("Poppins",18),width=2,height=1,padx=8,pady=8,bg="#3b3a3a",fg="#a50000",command=self.delete)
-                button_e = tk.Button(self.button_frame, text='e', **button_options)
-                button_π = tk.Button(self.button_frame, text='π', **button_options)
+                button_π = tk.Button(self.button_frame, text='π', **button_options, command=self.pi)
                 button_ln = tk.Button(self.button_frame,text="ln",**button_options, command=self.calculate_ln)
                 button_absolute = tk.Button(self.button_frame,text="|x|",**button_options)
-                button_power2 = tk.Button(self.button_frame,text="x²", **button_options)
+                button_power2 = tk.Button(self.button_frame,text="x²", **button_options, command=self.calculate_x2)
                 button_cos = tk.Button(self.button_frame,text="cos",**button_options, command=self.calculate_cos)
                 button_sin = tk.Button(self.button_frame,text="sin",**button_options, command=self.calculate_sin)
                 button_tan = tk.Button(self.button_frame,text="tan",**button_options,command=self.calculate_tan)
-                button_e = tk.Button(self.button_frame,text="e",**button_options)
-                button_π = tk.Button(self.button_frame,text="π",**button_options)
+                button_e = tk.Button(self.button_frame,text="e",**button_options,command=self.e)
                 button_xʸ=tk.Button(self.button_frame,text="xʸ",**button_options)
                 button_bin = tk.Button(self.button_frame,text="Bin",**button_options)
                 button_oct = tk.Button(self.button_frame,text="Oct",**button_options)
@@ -172,43 +170,52 @@ class Calculator_App():
                 self.number = int(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.log10(self.number))
+                self.current_calculation = str(m.log10(self.number))
         
         def calculate_ln(self):
                 self.number = int(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.log(self.number))
+                self.current_calculation = str(m.log(self.number))
                 
         def clear_entry(self):
                 self.current_calculation = ""
                 self.entry_box.delete(0,tk.END)
 
         def delete(self):
-                self.new_calculation = self.current_calculation[:-1]
+                self.current_calculation = self.current_calculation[:-1]
+                self.entry_box.delete(0,tk.END)
+                self.entry_box.insert(tk.END, self.current_calculation)
                 
         def calculate_sin(self):
                 self.number= int(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.sin(self.number))
+                self.current_calculation = str(m.sin(self.number))
         
         def calculate_cos(self):
                 self.number=int(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.cos(self.number))
+                self.current_calculation = str(m.cos(self.number))
         
         def calculate_tan(self):
                 self.number=int(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.tan(self.number))
+                self.current_calculation = str(m.tan(self.number))
         
         def calculate_sinh(self):
                 self.number=int(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.sinh(self.number))        
-       
+                self.current_calculation = str(m.sinh(self.number))
+        
         def calculate_cosh(self):
                 self.number=int(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.cosh(self.number))
+                self.current_calculation = str(m.cosh(self.number))
         
         def calculate_tanh(self):
                 self.number=int(self.current_calculation)
@@ -219,11 +226,38 @@ class Calculator_App():
                 self.number = int(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.sqrt(self.number))
+                self.current_calculation = str(m.sqrt(self.number))
         
         def calculate_gamma(self):
                 self.number = int(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.gamma(self.number))
+                self.current_calculation = str(m.gamma(self.number))
+                
+        def calculate_x2(self):
+                self.number = int(self.current_calculation)
+                self.number_power2 = self.number ** 2
+                self.entry_box.delete(0,tk.END)
+                self.entry_box.insert(tk.END,self.number_power2)
+                self.current_calculation = str(self.number_power2)
+
+        def e(self):
+                self.current_calculation = str(m.e)
+                self.entry_box.delete(0,tk.END)
+                self.entry_box.insert(tk.END,self.current_calculation)
+
+        def pi(self):
+                self.current_calculation = str(m.pi)
+                self.entry_box.delete(0,tk.END)
+                self.entry_box.insert(tk.END,self.current_calculation)
+
+        def neg(self):
+                self.current_calculation = int(self.current_calculation)
+                self.negative_calc = -self.current_calculation
+                self.negative_calc = str(self.negative_calc)
+                self.entry_box.delete(0,tk.END)
+                self.entry_box.insert(tk.END,self.negative_calc)
+
 m.e    
 w = tk.Tk()
 calc_app = Calculator_App(w)

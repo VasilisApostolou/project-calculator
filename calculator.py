@@ -41,12 +41,12 @@ class Calculator_App():
                 button_div = tk.Button(self.button_frame, text="÷", **button_options,command=lambda: self.press_btn('/'))
                 button_prcnt = tk.Button(self.button_frame, text="%", **button_options)
                 button_sqrt = tk.Button(self.button_frame, text="√", **button_options)
-                button_log = tk.Button(self.button_frame, text="log", **button_options, command=self.calculate_log)
+                button_log = tk.Button(self.button_frame, text="log10", **button_options, command=self.calculate_log10)
                 button_clear = tk.Button(self.button_frame,text="CE", **button_options, command=self.clear_entry)
-                button_del = tk.Button(self.button_frame,text="⌫", font=("Poppins",18),width=2,height=1,padx=8,pady=8,bg="#3b3a3a",fg="#a50000")
+                button_del = tk.Button(self.button_frame,text="⌫", font=("Poppins",18),width=2,height=1,padx=8,pady=8,bg="#3b3a3a",fg="#a50000",command=self.delete)
                 button_e = tk.Button(self.button_frame, text='e', **button_options)
                 button_π = tk.Button(self.button_frame, text='π', **button_options)
-                button_ln = tk.Button(self.button_frame,text="ln",**button_options)
+                button_ln = tk.Button(self.button_frame,text="ln",**button_options, command=self.calculate_ln)
                 button_absolute = tk.Button(self.button_frame,text="|x|",**button_options)
                 button_power2 = tk.Button(self.button_frame,text="x²", **button_options)
                 button_cos = tk.Button(self.button_frame,text="cos",**button_options)
@@ -60,7 +60,6 @@ class Calculator_App():
                 button_hex = tk.Button(self.button_frame,text="Hex",**button_options)
                 button_par1 = tk.Button(self.button_frame, text='(', **button_options)
                 button_par = tk.Button(self.button_frame, text=')', **button_options)
-                button_ln = tk.Button(self.button_frame,text="ln",**button_options)
                 button_mod = tk.Button(self.button_frame,text="mod", **button_options)
                 button_gamma = tk.Button(self.button_frame, text="Γ(z)",**button_options)
                 button_exp = tk.Button(self.button_frame, text="exp",**button_options)
@@ -169,15 +168,23 @@ class Calculator_App():
                 self.option_menu.add_command(label="Resize", command=self.resize)
                 self.option_menu.add_command(label="Exit", command=self.exit_calc)
 
-        def calculate_log(self):
+        def calculate_log10(self):
+                self.number = int(self.current_calculation)
+                self.entry_box.delete(0,tk.END)
+                self.entry_box.insert(tk.END,m.log10(self.number))
+        
+        def calculate_ln(self):
                 self.number = int(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.log(self.number))
-
+                
         def clear_entry(self):
                 self.entry_box.delete(0,tk.END)
 
-
+        def delete(self):
+                self.new_calculation = self.current_calculation[:-1]
+                
+m.e    
 w = tk.Tk()
 calc_app = Calculator_App(w)
 w.mainloop()

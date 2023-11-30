@@ -52,7 +52,7 @@ class Calculator_App():
                 button_sin = tk.Button(self.button_frame,text="sin",**button_options, command=self.calculate_sin)
                 button_tan = tk.Button(self.button_frame,text="tan",**button_options,command=self.calculate_tan)
                 button_e = tk.Button(self.button_frame,text="e",**button_options,command=self.e)
-                button_xʸ=tk.Button(self.button_frame,text="xʸ",**button_options)
+                button_xʸ=tk.Button(self.button_frame,text="xʸ",**button_options, command=self.power)
                 button_bin = tk.Button(self.button_frame,text="Bin",**button_options, command=self.binary)
                 button_oct = tk.Button(self.button_frame,text="Oct",**button_options, command=self.octal)
                 button_hex = tk.Button(self.button_frame,text="Hex",**button_options, command=self.hexadecimal)
@@ -60,7 +60,7 @@ class Calculator_App():
                 button_par_r = tk.Button(self.button_frame, text=')', **button_options,command=self.left_par)
                 button_mod = tk.Button(self.button_frame,text="mod", **button_options, command=self.mod)
                 button_dec = tk.Button(self.button_frame, text="Dec",**button_options, command=self.decimal)
-                button_exp = tk.Button(self.button_frame, text="exp",**button_options)
+                button_exp = tk.Button(self.button_frame, text="exp",**button_options,command=self.exp)
                 button_sinh = tk.Button(self.button_frame, text="sinh",**button_options, command=self.calculate_sinh)
                 button_cosh = tk.Button(self.button_frame, text="cosh",**button_options,command=self.calculate_cosh)
                 button_tanh = tk.Button(self.button_frame, text="tanh",**button_options, command=self.calculate_tanh)
@@ -180,7 +180,7 @@ class Calculator_App():
 
         def calculate_log10(self):
                 try:
-                        self.number = int(self.current_calculation)
+                        self.number = float(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,m.log10(self.number))
                         self.current_calculation = str(m.log10(self.number))
@@ -191,7 +191,7 @@ class Calculator_App():
         
         def calculate_ln(self):
                 try:
-                        self.number = int(self.current_calculation)
+                        self.number = float(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,m.log(self.number))
                         self.current_calculation = str(m.log(self.number))
@@ -211,7 +211,7 @@ class Calculator_App():
                 
         def calculate_sin(self):
                 try:
-                        self.number= int(self.current_calculation)
+                        self.number= float(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,m.sin(self.number))
                         self.current_calculation = str(m.sin(self.number))
@@ -222,7 +222,7 @@ class Calculator_App():
        
         def calculate_cos(self):
                 try:
-                        self.number=int(self.current_calculation)
+                        self.number=float(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,m.cos(self.number))
                         self.current_calculation = str(m.cos(self.number))
@@ -233,7 +233,7 @@ class Calculator_App():
         
         def calculate_tan(self):
                 try:
-                        self.number=int(self.current_calculation)
+                        self.number=float(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,m.tan(self.number))
                         self.current_calculation = str(m.tan(self.number))
@@ -244,7 +244,7 @@ class Calculator_App():
         
         def calculate_sinh(self):
                 try:
-                        self.number=int(self.current_calculation)
+                        self.number=float(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,m.sinh(self.number))        
                         self.current_calculation = str(m.sinh(self.number))
@@ -255,7 +255,7 @@ class Calculator_App():
         
         def calculate_cosh(self):
                 try:
-                        self.number=int(self.current_calculation)
+                        self.number=float(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,m.cosh(self.number))
                         self.current_calculation = str(m.cosh(self.number))
@@ -266,7 +266,7 @@ class Calculator_App():
        
         def calculate_tanh(self):
                 try:
-                        self.number=int(self.current_calculation)
+                        self.number=float(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,m.tanh(self.number))
                         self.entry_size_configuration()
@@ -276,7 +276,7 @@ class Calculator_App():
         
         def calculate_sqrt(self):
                 try:
-                        self.number = int(self.current_calculation)
+                        self.number = float(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,m.sqrt(self.number))
                         self.current_calculation = str(m.sqrt(self.number))
@@ -286,14 +286,14 @@ class Calculator_App():
                         self.current_calculation = ""
         """
         def calculate_gamma(self):
-                self.number = int(self.current_calculation)
+                self.number = float(self.current_calculation)
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,m.gamma(self.number))
                 self.current_calculation = str(m.gamma(self.number))
          """       
         def calculate_x2(self):
                 try:
-                        self.number = int(self.current_calculation)
+                        self.number = float(self.current_calculation)
                         self.number_power2 = self.number ** 2
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,self.number_power2)
@@ -324,7 +324,7 @@ class Calculator_App():
         
         def neg(self):
                 try:
-                        self.current_calculation = int(self.current_calculation)
+                        self.current_calculation = float(self.current_calculation)
                         self.negative_calc = -self.current_calculation
                         self.negative_calc = str(self.negative_calc)
                         self.entry_box.delete(0,tk.END)
@@ -354,7 +354,7 @@ class Calculator_App():
         
         def absolute(self):
                 try:
-                        self.current_calculation = int(self.current_calculation)
+                        self.current_calculation = float(self.current_calculation)
                         self.abs_calc = abs(self.current_calculation)
                         self.abs_calc = str(self.abs_calc)
                         self.entry_box.delete(0,tk.END)
@@ -366,7 +366,7 @@ class Calculator_App():
         
         def binary(self):
                 try:
-                        self.current_calculation = int(self.current_calculation)
+                        self.current_calculation = float(self.current_calculation)
                         self.converted = bin(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,self.converted)
@@ -378,7 +378,7 @@ class Calculator_App():
         
         def octal(self):
                 try:
-                        self.current_calculation = int(self.current_calculation)
+                        self.current_calculation = float(self.current_calculation)
                         self.converted = oct(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,self.converted)
@@ -390,7 +390,7 @@ class Calculator_App():
         
         def hexadecimal(self):
                 try:
-                        self.current_calculation = int(self.current_calculation)
+                        self.current_calculation = float(self.current_calculation)
                         self.converted = hex(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,self.converted)
@@ -433,6 +433,29 @@ class Calculator_App():
                 except ValueError:
                         self.error_handling()
                         self.current_calculation = ""
+
+        def power(self):
+                try:
+                        self.current_calculation += "**"
+                        self.entry_box.delete(0,tk.END)
+                        self.entry_box.insert(tk.END,self.current_calculation)
+                        self.entry_size_configuration()
+                except ValueError:
+                        self.error_handling()
+                        self.current_calculation = ""
+
+        def exp(self):
+                try:
+                        self.number = float(self.current_calculation)
+                        self.number = m.exp(self.number)
+                        self.entry_box.delete(0,tk.END)
+                        self.entry_box.insert(tk.END,self.number)
+                        self.entry_size_configuration()
+                except ValueError:
+                        self.error_handling()
+                        self.current_calculation = ""                       
+
+
 w = tk.Tk()
 calc_app = Calculator_App(w)
 w.mainloop()

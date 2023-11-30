@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-import math
+import math as m
 
 class Calculator_App():
         def __init__(self, w):
@@ -41,7 +41,7 @@ class Calculator_App():
                 button_div = tk.Button(self.button_frame, text="÷", **button_options,command=lambda: self.press_btn('/'))
                 button_prcnt = tk.Button(self.button_frame, text="%", **button_options)
                 button_sqrt = tk.Button(self.button_frame, text="√", **button_options)
-                button_log = tk.Button(self.button_frame, text="log", **button_options)
+                button_log = tk.Button(self.button_frame, text="log", **button_options, command=self.calculate_log)
                 button_clear = tk.Button(self.button_frame,text="CE", **button_options)
                 button_del = tk.Button(self.button_frame,text="⌫", font=("Poppins",18),width=2,height=1,padx=8,pady=8,bg="#3b3a3a",fg="#a50000")
                 button_e = tk.Button(self.button_frame, text='e', **button_options)
@@ -169,6 +169,10 @@ class Calculator_App():
                 self.option_menu.add_command(label="Resize", command=self.resize)
                 self.option_menu.add_command(label="Exit", command=self.exit_calc)
 
+        def calculate_log(self):
+                self.number = int(self.current_calculation)
+                self.entry_box.delete(0,tk.END)
+                self.entry_box.insert(tk.END,m.log(self.number))
 w = tk.Tk()
 calc_app = Calculator_App(w)
 w.mainloop()

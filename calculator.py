@@ -14,6 +14,7 @@ class Calculator_App():
                 self.create_buttons_grid()
                 self.create_entry_box()
                 self.create_option_menu()
+                self.create_label()
                 
         def create_buttons_grid(self):
                 #δημιουργία γραφικών για τα κουμπιά της εφαρμογής
@@ -41,7 +42,7 @@ class Calculator_App():
                 button_div = tk.Button(self.button_frame, text="÷", **button_options,command=lambda: self.press_btn('/'))
                 button_prcnt = tk.Button(self.button_frame, text="%", **button_options, command=self.percent)
                 button_sqrt = tk.Button(self.button_frame, text="√", **button_options, command=self.calculate_sqrt)
-                button_log = tk.Button(self.button_frame, text="log10", **button_options, command=self.calculate_log10)
+                self.button_log = tk.Button(self.button_frame, text="log10", **button_options, command=self.calculate_log10)
                 button_clear = tk.Button(self.button_frame,text="C", **button_options, command=self.clear_entry)
                 button_del = tk.Button(self.button_frame,text="⌫", font=("Poppins",18),width=2,height=1,padx=8,pady=8,bg="#3b3a3a",fg="#a50000",command=self.delete)
                 button_π = tk.Button(self.button_frame, text='π', **button_options, command=self.pi)
@@ -78,7 +79,7 @@ class Calculator_App():
                 button_power2.grid(row=3,column=0)
                 button_π.grid(row=3,column=1)
                 button_ln.grid(row=3,column=2)
-                button_log.grid(row=3,column=3)
+                self.button_log.grid(row=3,column=3)
                 button_sqrt.grid(row=3,column=4)
                 button_prcnt.grid(row=3,column=5)
                 button_div.grid(row=3,column=6)
@@ -115,9 +116,13 @@ class Calculator_App():
                 button_neg.grid(row=7, column=5)
                 button_equal.grid(row=7, column=6)
 
+        def create_label(self):
+                self.label = tk.Label(self.w, text="SCIENTIFIC CALCULATOR", bg="#3b3a3a", fg="#00b8dd", font=("Poppins", 18))
+                self.label.place(x=46,y=82)
+
         def create_entry_box(self):
                 #δημιουργεί το display box για τους αριθμούς
-                self.entry_box = tk.Entry(self.w, justify='right',bg="#232323", fg='white', font=("Arial", 32))
+                self.entry_box = tk.Entry(self.w, justify='right',bg="#232323", fg='white', font=("Sudo", 32))
                 self.entry_box.pack(fill="x", padx=10, pady=10, ipadx=8, ipady=8)
                 self.w.bind('<Key>', self.on_key_press)
 
@@ -168,8 +173,12 @@ class Calculator_App():
         def resize(self):
                 #μεγαλώνει το tkinter παράθυρο 
                 #και μετακινέι το button_frame
-                w.geometry("400x670")
-                self.button_frame.place(x=19,y=130)
+                w.geometry("380x600")
+                self.button_frame.place(x=23,y=130)
+                for child in self.button_frame.winfo_children():
+                        if isinstance(child, tk.Button):
+                                child.configure(font=("Poppins", 14))
+                
                 
         def create_option_menu(self):
                 #δημιουργεί ένα μενού με επιλογές τις οποίες μπορεί να χρησιμοποιήσει ο χρήστης
@@ -372,7 +381,7 @@ class Calculator_App():
                         self.entry_box.insert(tk.END,self.converted)
                         self.current_calculation = ""
                         self.entry_size_configuration()
-                except ValueError:
+                except (ValueError, TypeError):
                         self.error_handling()
                         self.current_calculation = ""
         
@@ -384,7 +393,7 @@ class Calculator_App():
                         self.entry_box.insert(tk.END,self.converted)
                         self.current_calculation = ""      
                         self.entry_size_configuration()    
-                except ValueError:
+                except (ValueError, TypeError):
                         self.error_handling()
                         self.current_calculation = ""
         
@@ -396,7 +405,7 @@ class Calculator_App():
                         self.entry_box.insert(tk.END,self.converted)
                         self.current_calculation = ""      
                         self.entry_size_configuration()
-                except ValueError:
+                except (ValueError, TypeError):
                         self.error_handling()
                         self.current_calculation = ""
         
@@ -408,7 +417,7 @@ class Calculator_App():
                         self.entry_box.insert(tk.END,self.converted)
                         self.current_calculation = self.converted
                         self.entry_size_configuration()
-                except ValueError:
+                except (ValueError, TypeError):
                         self.error_handling()
                         self.current_calculation = ""              
 

@@ -15,6 +15,11 @@ class Calculator_App():
                 self.create_entry_box()
                 self.create_option_menu()
                 self.create_label()
+                self.recognize_enter()
+                self.recognize_backspace()
+                self.recognize_e()
+                self.recognize_p()
+
                 
         def create_buttons_grid(self):
                 #δημιουργία γραφικών για τα κουμπιά της εφαρμογής
@@ -117,6 +122,7 @@ class Calculator_App():
                 button_equal.grid(row=7, column=6)
 
         def create_label(self):
+                #δημιουργεί την ετικέτα που γράφει Scientific Calculator
                 self.label = tk.Label(self.w, text="SCIENTIFIC CALCULATOR", bg="#3b3a3a", fg="#00b8dd", font=("Poppins", 18))
                 self.label.place(x=46,y=82)
 
@@ -126,13 +132,20 @@ class Calculator_App():
                 self.entry_box.pack(fill="x", padx=10, pady=10, ipadx=8, ipady=8)
                 self.w.bind('<Key>', self.on_key_press)
 
+
         def entry_size_configuration(self):
+                #Το πρόγραμμα ελέγχει το μέγεθος του entry 
+                #έτσι ώστε αμα τα ψηφία είναι πολλά και να μικραίνει 
+                #η γραμματοσειρά των ψηφίων και να βλέπει ο χρήστης περισσότερα ψηφία
                 if len(self.entry_box.get()) > 15:
                         self.entry_box.configure(font=("Arial", 20))
                 if len(self.entry_box.get()) > 22:
                         self.entry_box.configure(font=("Arial", 16))
         
         def error_handling(self,error="Error-Invalid Input"):
+                #συνάρτηση η οποία καλείται σε περίπτωση 
+                #που ο χρήστης εισάγει κάτι το οποίο 
+                #θα εμφανίσει error στο termminal 
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END,error)
         
@@ -148,11 +161,15 @@ class Calculator_App():
                         self.entry_size_configuration()
 
         def press_btn(self,n):
+                #αναγνωρίζει το πάτημα των κουμπιών 
                 self.current_calculation += str(n)
                 self.entry_box.delete(0, tk.END)
                 self.entry_box.insert(tk.END, self.current_calculation)
 
         def equalize(self):
+                #συνάρτηση η οποία χρησιμοποιεί την εντολή evaluate
+                #δίνοντας το αποτέλεσμα στις βασικές πράξεις τις οποίες καλύπτει 
+                #η εντολή eval()
                 try:
                         self.calculated_text = eval(self.current_calculation)
                         self.entry_box.delete(0, tk.END)
@@ -164,6 +181,10 @@ class Calculator_App():
                         self.entry_box.insert(tk.END, "Error-Invalid Input")
                         self.current_calculation = ""
 
+        def recognize_enter(self):
+                self.w.bind('<Return>', lambda event=None: self.equalize())
+
+
         def exit_calc(self):
                 #χρησιμοποιείται απο το option_menu και δίνει την επιλογή στον χρήστη να κλείσει το πρόγραμμα
                 users_response = messagebox.askquestion("EXIT","Are you sure you want to exit the program?") #μήνυμα προειδοποιήσης 
@@ -173,6 +194,7 @@ class Calculator_App():
         def resize(self):
                 #μεγαλώνει το tkinter παράθυρο 
                 #και μετακινέι το button_frame
+                #χρήση για μεγαλύτερες οθόνες
                 w.geometry("380x600")
                 self.button_frame.place(x=23,y=130)
                 for child in self.button_frame.winfo_children():
@@ -187,6 +209,8 @@ class Calculator_App():
                 self.option_menu.add_command(label="Resize", command=self.resize)
                 self.option_menu.add_command(label="Exit", command=self.exit_calc)
 
+        #στις παρακάτων συναρτήσεις περιέχεται η λειτουργία καθε κουμπιού 
+        #στο calculator
         def calculate_log10(self):
                 try:
                         self.number = float(self.current_calculation)
@@ -217,7 +241,10 @@ class Calculator_App():
                 self.current_calculation = self.current_calculation[:-1]
                 self.entry_box.delete(0,tk.END)
                 self.entry_box.insert(tk.END, self.current_calculation)
-                
+
+        def recognize_backspace(self):
+                self.w.bind('<BackSpace>', lambda event=None: self.delete())
+        
         def calculate_sin(self):
                 try:
                         self.number= float(self.current_calculation)
@@ -293,13 +320,7 @@ class Calculator_App():
                 except ValueError:
                         self.error_handling()
                         self.current_calculation = ""
-        """
-        def calculate_gamma(self):
-                self.number = float(self.current_calculation)
-                self.entry_box.delete(0,tk.END)
-                self.entry_box.insert(tk.END,m.gamma(self.number))
-                self.current_calculation = str(m.gamma(self.number))
-         """       
+        
         def calculate_x2(self):
                 try:
                         self.number = float(self.current_calculation)
@@ -321,6 +342,9 @@ class Calculator_App():
                 except ValueError:
                         self.error_handling()
                         self.current_calculation = ""
+
+        def recognize_e(self):
+                self.w.bind('<E>', lambda event=None: self.e())
         
         def pi(self):
                 try:
@@ -330,6 +354,9 @@ class Calculator_App():
                 except ValueError:
                         self.error_handling()
                         self.current_calculation = ""
+
+        def recognize_p(self):
+                self.w.bind('<P>', lambda event=None: self.pi())
         
         def neg(self):
                 try:
@@ -465,6 +492,7 @@ class Calculator_App():
                         self.current_calculation = ""                       
 
 
-w = tk.Tk()
-calc_app = Calculator_App(w)
-w.mainloop()
+if __name__ == "__main__":
+        w = tk.Tk()
+        calc_app = Calculator_App(w)
+        w.mainloop()

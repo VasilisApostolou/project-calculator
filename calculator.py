@@ -189,8 +189,8 @@ class Calculator_App():
         def keyboard_binds(self):
                 self.w.bind('<Return>', lambda event=None: self.equalize())
                 self.w.bind('<BackSpace>', lambda event=None: self.delete())
-                self.w.bind('<E>', lambda event=None: self.e())
-                self.w.bind('<P>', lambda event=None: self.pi())
+                self.w.bind('<e>', lambda event=None: self.e())
+                self.w.bind('<p>', lambda event=None: self.pi())
         
         def press_btn(self,n):
                 #αναγνωρίζει το πάτημα των κουμπιών 

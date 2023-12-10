@@ -452,7 +452,6 @@ class Calculator_App():
                         self.current_calculation += "%"
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,self.current_calculation)
-                        self.current_calculation = ""
                 except:
                         self.error_handling()
                         self.current_calculation = ""

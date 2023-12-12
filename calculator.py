@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 import math as m
 
+
 class Calculator_App():
         def __init__(self, w):
                 #δημιουργία γραφικών παραθύρου εφαρμογής

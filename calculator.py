@@ -23,11 +23,14 @@ class Calculator_App():
                 self.create_option_menu()
                 self.create_label()
                 self.keyboard_binds()
+                self.button_log.config(font=("Poppins", 13))
+                self.button_log.config(width=4,height=2)
+                self.button_log.config(pady=5,padx=4)
 
                 
         def create_buttons_grid(self):
                 #δημιουργία γραφικών για τα κουμπιά της εφαρμογής
-                self.button_frame = tk.Frame(self.w)
+                self.button_frame = tk.Frame(self.w,bg="#3b3a3a")
                 self.button_frame.place(x=8, y=130)
                 button_options = {'font': ("Poppins", 18), 'width': 2, 'height': 1,'padx': 8, 'pady': 8, 'bg': '#3b3a3a', 'fg': 'white'}
                 modified_button_options = button_options.copy()
@@ -155,9 +158,13 @@ class Calculator_App():
                 #χρήση για μεγαλύτερες οθόνες
                 w.geometry("380x600")
                 self.button_frame.place(x=23,y=130)
+                
                 for child in self.button_frame.winfo_children():
                         if isinstance(child, tk.Button):
                                 child.configure(font=("Poppins", 14))
+                self.button_log.config(font=("Poppins", 12))
+                self.button_log.config(width=3,height=2)
+                self.button_log.config(pady=2,padx=5)
 
         def entry_size_configuration(self):
                 #Το πρόγραμμα ελέγχει το μέγεθος του entry 

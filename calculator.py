@@ -143,8 +143,12 @@ class Calculator_App():
                 #δημιουργεί ένα μενού με επιλογές τις οποίες μπορεί να χρησιμοποιήσει ο χρήστης
                 self.option_menu = tk.Menu(self.w)
                 self.w.config(menu=self.option_menu)
-                self.option_menu.add_command(label="Resize", command=self.resize)
+                
                 self.option_menu.add_command(label="Exit", command=self.exit_calc)
+                self.resize_options = tk.Menu(self.option_menu, tearoff=0)
+                self.resize_options.add_command(label="Bigger", command=self.resize_bigger)
+                self.resize_options.add_command(label="Regular", command=self.resize_regular)
+                self.option_menu.add_cascade(label="Resize",menu=self.resize_options)
         
         def exit_calc(self):
                 #χρησιμοποιείται απο το option_menu και δίνει την επιλογή στον χρήστη να κλείσει το πρόγραμμα
@@ -152,13 +156,12 @@ class Calculator_App():
                 if users_response == "yes":
                         w.destroy()
         
-        def resize(self):
+        def resize_bigger(self):
                 #μεγαλώνει το tkinter παράθυρο 
                 #και μετακινέι το button_frame
                 #χρήση για μεγαλύτερες οθόνες
                 w.geometry("380x600")
                 self.button_frame.place(x=23,y=130)
-                
                 for child in self.button_frame.winfo_children():
                         if isinstance(child, tk.Button):
                                 child.configure(font=("Poppins", 14))
@@ -166,6 +169,18 @@ class Calculator_App():
                 self.button_log.config(width=3,height=2)
                 self.button_log.config(pady=2,padx=5)
 
+        def resize_regular(self):
+                #μετατρέπει το tkinter παράθυρο
+                #στο αρχικό του μέγεθος
+                w.geometry("380x500")
+                self.button_frame.place(x=8, y=130)
+                for child in self.button_frame.winfo_children():
+                        if isinstance(child, tk.Button):
+                                child.configure(font=("Poppins", 18))
+                self.button_log.config(font=("Poppins", 13))
+                self.button_log.config(width=4,height=2)
+                self.button_log.config(pady=5,padx=4)
+                
         def entry_size_configuration(self):
                 #Το πρόγραμμα ελέγχει το μέγεθος του entry 
                 #έτσι ώστε αμα τα ψηφία είναι πολλά και να μικραίνει 

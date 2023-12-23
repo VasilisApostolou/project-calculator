@@ -5,27 +5,27 @@ import math as m
 
 class Calculator_App():
         def __init__(self, w):
-                #δημιουργία γραφικών παραθύρου εφαρμογής
+                #ορισμός μεταβλητών κλάσης
                 self.current_calculation = ""
                 self.w = w
                 self.run_app()
         
         def create_tkinter_window(self):
+                #συνάρτηση δημιουργίας του παραθύρου γραφικών
                 self.w.geometry("380x500")
                 self.w.title("SCIENTIFIC CALCULATOR")
                 self.w.resizable(height=False, width=False)
                 self.w.configure(bg='#3b3a3a')
 
         def run_app(self):
+                #συνάρτηση η οποία καλεί τις υπόλοιπες βασικές συναρτήσεις του προγράμματος
                 self.create_tkinter_window()
                 self.create_buttons_grid()
                 self.create_entry_box()
                 self.create_option_menu()
                 self.create_label()
                 self.keyboard_binds()
-                self.button_log.config(font=("Poppins", 13))
-                self.button_log.config(width=4,height=2)
-                self.button_log.config(pady=5,padx=4)
+         
 
                 
         def create_buttons_grid(self):
@@ -54,7 +54,7 @@ class Calculator_App():
                 button_div = tk.Button(self.button_frame, text="÷", **button_options,command=lambda: self.press_btn('/'))
                 button_prcnt = tk.Button(self.button_frame, text="%", **button_options, command=self.percent)
                 button_sqrt = tk.Button(self.button_frame, text="√", **button_options, command=self.calculate_sqrt)
-                self.button_log = tk.Button(self.button_frame, text="log10", **button_options, command=self.calculate_log10)
+                self.button_log = tk.Button(self.button_frame, text="log10",font=("Poppins",13),width=4,height=2,padx=4,pady=5,bg="#3b3a3a",fg="white" , command=self.calculate_log10)
                 button_clear = tk.Button(self.button_frame,text="C", **button_options, command=self.clear_entry)
                 button_del = tk.Button(self.button_frame,text="⌫", font=("Poppins",18),width=2,height=1,padx=8,pady=8,bg="#3b3a3a",fg="#a50000",command=self.delete)
                 button_π = tk.Button(self.button_frame, text='π', **button_options, command=self.pi)

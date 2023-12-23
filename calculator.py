@@ -402,7 +402,7 @@ class Calculator_App():
         
         def binary(self):
                 try:
-                        self.current_calculation = float(self.current_calculation)
+                        self.current_calculation = int(self.current_calculation)
                         self.converted = bin(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,self.converted)
@@ -414,7 +414,7 @@ class Calculator_App():
         
         def octal(self):
                 try:
-                        self.current_calculation = float(self.current_calculation)
+                        self.current_calculation = int(self.current_calculation)
                         self.converted = oct(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,self.converted)
@@ -426,7 +426,7 @@ class Calculator_App():
         
         def hexadecimal(self):
                 try:
-                        self.current_calculation = float(self.current_calculation)
+                        self.current_calculation = int(self.current_calculation)
                         self.converted = hex(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,self.converted)
@@ -444,7 +444,11 @@ class Calculator_App():
                         self.entry_box.insert(tk.END,self.converted)
                         self.current_calculation = self.converted
                         self.entry_size_configuration()
-                except (ValueError, TypeError):
+                except ValueError:
+                        self.entry_box.delete(0, tk.END)
+                        self.entry_box.insert(tk.END,"Already a decimal")
+                        self.current_calculation = ""
+                except:
                         self.error_handling()
                         self.current_calculation = ""              
 

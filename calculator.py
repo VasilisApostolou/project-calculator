@@ -427,7 +427,7 @@ class Calculator_App():
                         self.current_calculation = int(self.current_calculation)
                         self.converted = bin(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
-                        self.entry_box.insert(tk.END,self.converted)
+                        self.entry_box.insert(tk.END,self.converted[2:])
                         self.current_calculation = ""
                         self.entry_size_configuration()
                 except (ValueError, TypeError):
@@ -439,7 +439,7 @@ class Calculator_App():
                         self.current_calculation = int(self.current_calculation)
                         self.converted = oct(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
-                        self.entry_box.insert(tk.END,self.converted)
+                        self.entry_box.insert(tk.END,self.converted[2:])
                         self.current_calculation = ""      
                         self.entry_size_configuration()    
                 except (ValueError, TypeError):
@@ -451,7 +451,7 @@ class Calculator_App():
                         self.current_calculation = int(self.current_calculation)
                         self.converted = hex(self.current_calculation)
                         self.entry_box.delete(0,tk.END)
-                        self.entry_box.insert(tk.END,self.converted)
+                        self.entry_box.insert(tk.END,self.converted[2:])
                         self.current_calculation = ""      
                         self.entry_size_configuration()
                 except (ValueError, TypeError):

@@ -237,10 +237,20 @@ class Calculator_App():
                         self.current_calculation = ""
                 except:
                         self.error_handling()
-                        self.current_calculation = ""                
+                        self.current_calculation = ""               
+
 
         #στις παρακάτων συναρτήσεις περιέχεται η λειτουργία καθε κουμπιού 
         #στο calculator
+        def clear_entry(self):
+                self.current_calculation = ""
+                self.entry_box.delete(0,tk.END)
+
+        def delete(self):
+                self.current_calculation = self.current_calculation[:-1]
+                self.entry_box.delete(0,tk.END)
+                self.entry_box.insert(tk.END, self.current_calculation)
+        
         def calculate_log10(self):
                 try:
                         self.number = float(self.current_calculation)
@@ -263,16 +273,7 @@ class Calculator_App():
                         self.error_handling()
                         self.current_calculation = ""
                 
-        def clear_entry(self):
-                self.current_calculation = ""
-                self.entry_box.delete(0,tk.END)
-
-        def delete(self):
-                self.current_calculation = self.current_calculation[:-1]
-                self.entry_box.delete(0,tk.END)
-                self.entry_box.insert(tk.END, self.current_calculation)
-
-        
+    
         def calculate_sin(self):
                 try:
                         self.number= float(self.current_calculation)

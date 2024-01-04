@@ -26,8 +26,6 @@ class Calculator_App():
                 self.create_label()
                 self.keyboard_binds()
          
-
-                
         def create_buttons_grid(self):
                 #δημιουργία γραφικών για τα κουμπιά της εφαρμογής
                 self.button_frame = tk.Frame(self.w,bg="#3b3a3a")

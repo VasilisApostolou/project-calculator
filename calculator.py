@@ -243,6 +243,7 @@ class Calculator_App():
         def clear_entry(self):
                 self.current_calculation = ""
                 self.entry_box.delete(0,tk.END)
+                self.entry_box.configure(font=('Poppins',24))
 
         def delete(self):
                 self.current_calculation = self.current_calculation[:-1]
@@ -363,7 +364,7 @@ class Calculator_App():
         
         def e(self):
                 try:
-                        self.current_calculation = str(m.e)
+                        self.current_calculation += str(m.e)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,self.current_calculation)
                 except:
@@ -372,7 +373,7 @@ class Calculator_App():
 
         def pi(self):
                 try:
-                        self.current_calculation = str(m.pi)
+                        self.current_calculation += str(m.pi)
                         self.entry_box.delete(0,tk.END)
                         self.entry_box.insert(tk.END,self.current_calculation)
                 except:
@@ -507,9 +508,9 @@ class Calculator_App():
         def exp(self):
                 try:
                         self.number = float(self.current_calculation)
-                        self.number = m.exp(self.number)
+                        self.exp_num = m.exp(self.number)
                         self.entry_box.delete(0,tk.END)
-                        self.entry_box.insert(tk.END,self.number)
+                        self.entry_box.insert(tk.END,self.exp_num)
                         self.entry_size_configuration()
                 except OverflowError:
                         self.entry_box.delete(0, tk.END)
